@@ -1,36 +1,33 @@
 #FlexFlux
-##A simple flux implementation
-inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
+##A simpler flux
+Inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
-read more here: https://medium.com/@adg_88110/why-i-wrote-a-flux-implementation-5f94a0f7a5c2#.9gt012xwv
+Read more here: https://medium.com/@adg_88110/why-i-wrote-a-flux-implementation-5f94a0f7a5c2#.9gt012xwv
 
 ##Installing
 `npm install --save flex-flux` or `yarn add flex-flux`
 
-##Hey, boilerplate!?!
-yup there's a tiny bit of boilerplate in order for the API to be able to return a constructor
-
-###but have no fear
+##Get started
 it's just a tiny file that is named something like
-`FlexFluxInstance.js`
+`dataStore.js`
 with the following code:
 ```javascript
 import FlexFlux from 'flex-flux';
-const { modifyState, getState } = new FlexFlux();
-export { modifyState, getState }
+export const { modifyState, getState, subscribe } = new FlexFlux();
 ```
 
 ##The api
-There are two exposed api entry points.
+There are three exposed api entry points.
 
-1. `modifyState` - a function that takes a function that should accept the state, _and mutate it_.
-2. `getState` - a function that simply returns the state.
+1. `modifyState` - takes a function that should accept the state object, and do whatever it wants with it.
+2. `getState` - gets the current state.
+3. `subscribe` - runs a function passed to it every time modifyState finishes.
 
 ## Examples
 
 ```javascript
 //replace with the relative location of your FlexFlux instance
-import { getState, modifyState } from "./FlexFluxInstance";
+import { getState, modifyState } from "./dataStore";
 
 const initialModifier = state => {
   state.foo = "bar";
@@ -82,6 +79,25 @@ setInterval(
   1000
 );
 ```
+subscribe - used to update the view when the state changes
+```jsx harmony
+//commmon example from create-react-app modified to use FlexFlux
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+import { getState, subscribe } from "./dataStore";
+
+const renderApp = () =>
+  ReactDOM.render(<App state={getState()} />, document.getElementById("root"));
+
+renderApp();
+
+subscribe(renderApp);
+
+```
+
+
 ##And what about async?
 ###promises, promises, promises
 Just return a promise instead of a synchronous function...
