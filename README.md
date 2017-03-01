@@ -5,7 +5,7 @@ inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf36
 ##Installing
 `npm install --save flex-flux` or `yarn add flex-flux`
 
-##Hey, boilerplate
+##Hey, boilerplate!?!
 yup, there's a tiny bit of boilerplate added in 1.0.0 
 in order for the api to be able to return a constructor
 
