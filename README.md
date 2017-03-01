@@ -2,6 +2,8 @@
 ##A simple flux implementation
 inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
+read more here: https://medium.com/@adg_88110/why-i-wrote-a-flux-implementation-5f94a0f7a5c2#.9gt012xwv
+
 ##Installing
 `npm install --save flex-flux` or `yarn add flex-flux`
 
