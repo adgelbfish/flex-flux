@@ -1,0 +1,25 @@
+{
+  "name": "flex-flux",
+  "version": "0.0.1",
+  "description": "a simple and flexible flux implementation",
+  "main": "index.js",
+  "repository": "https://github.com/adgelbfish/flex-flux.git",
+  "author": "Avraham David Gelbfish <adg@adgelb.fish>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir lib --copy-files && npm run build-index",
+    "build-index": "babel index-src.js --out-file index.js",
+    "test": "jest"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-env": "^1.1.10",
+    "jest-cli": "^19.0.2"
+  },
+  "dependencies": {}
+}
