@@ -1,8 +1,9 @@
-export const FlexFlux = function (){
+export const FlexFlux = function() {
   const state = {};
 
   let queue = [];
   let isRunning = false;
+  let subscriptions = [];
 
   const addToQueue = modifier => {
     queue.push(modifier);
@@ -23,13 +24,19 @@ export const FlexFlux = function (){
         } else {
           isRunning = false;
         }
+        subscriptions.forEach(fn => fn());
       })
       .catch(console.log);
+  };
+
+  const subscribe = fn => {
+    subscriptions.push(fn);
   };
   return {
     modifyState: modifier => {
       addToQueue(modifier);
     },
-    getState: () => state
+    getState: () => state,
+    subscribe: fn => subscribe(fn)
   };
 };

@@ -1,6 +1,6 @@
 import { FlexFlux } from "./stateManager";
 
-const { modifyState, getState } = new FlexFlux();
+const { subscribe, modifyState, getState } = new FlexFlux();
 
 let regularChecker = fooState => new Promise((res, rej) => {
   let modifierFunction = state => {
@@ -14,7 +14,7 @@ let promiseChecker = fooState => new Promise((res, rej) => {
   let modifierFunction = state => new Promise((resolve, reject) => {
     state.foo = fooState;
     res(state.foo);
-    resolve()
+    resolve();
   });
   modifyState(modifierFunction);
 });
@@ -44,5 +44,15 @@ describe("modifyState", () => {
 describe("getState", () => {
   it("should return an object", () => {
     expect(typeof getState()).toBe("object");
+  });
+});
+
+describe("subscribe", () => {
+  it("should call the function that is passed to subscribe", async () => {
+    let mockFn = jest.fn(() => {});
+    subscribe(mockFn);
+    await regularChecker("hi")
+    await promiseChecker("hello")
+    expect(mockFn).toHaveBeenCalled();
   });
 });
