@@ -29,6 +29,8 @@ There are three exposed api entry points.
 
 ## Examples
 
+**modifyState** used to modify the state
+
 ```javascript
 //replace with the relative location of your FlexFlux instance
 import { getState, modifyState } from "./dataStore";
