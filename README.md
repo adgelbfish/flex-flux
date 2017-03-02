@@ -46,27 +46,10 @@ modifyState(initialModifier); //this will leave the end result of state.foo to b
 
 ```
 
-Currently FlexFlux does not have an api to notify when a change happens.
-A function that needs to be exectued only after change in state
-can be executed inline as follows:
- 
-```javascript
-//the thing you want to do
-const thingToDo = (stuff) => console.log(stuff);
+~~Currently FlexFlux does not have an api to notify when a change happens.~~
 
-//add your modifier
-modifyState(state => {
-  state.foo = "bam";
-  //you can do this if it needs to be executed as soon as possible:
-  thingToDo(state);
-});
+-- subscribe functionality added in 0.1.0
 
-//...or add it next, though this doesn't guarantee it happening right away
-//it will execute at some point after the first one
-modifyState(state => {
-  thingToDo(state);
-});
-```
 what's `getState`?, well, suppose you wanted the state at the current moment, here it is
 ```javascript
 getState(); //returns the state at the current moment, see following
