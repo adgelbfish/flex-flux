@@ -4,12 +4,16 @@ Inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf36
 
 Read more here: https://medium.com/@adg_88110/why-i-wrote-a-flux-implementation-5f94a0f7a5c2#.9gt012xwv
 
+The basic idea of it is, usually, **the more flexible the coding is, the easier it is to develop, unless flexibility introduces problems**.
+So FlexFlux tries to make it more flexible while still fixing the "good to unwanted state' problem caused by shared state mutated by multiple accessors.
+
+(The problem occurs when the user requests an asynchronous call to update the data, then another call on the same data and the second one finishes before the first. With shared mutable state, even though the user expects the data to be as the first and then the second call mutated it, it is unpredictable to the developer. )
+
 ##Installing
 `npm install --save flex-flux` or `yarn add flex-flux`
 
 ##Get started
-it's just a tiny file that is named something like
-`dataStore.js`
+make a file named something like `dataStore.js`
 with the following code:
 ```javascript
 import FlexFlux from 'flex-flux';
@@ -50,7 +54,8 @@ modifyState(initialModifier); //this will leave the end result of state.foo to b
 
 -- subscribe functionality added in 0.1.0
 
-what's `getState`?, well, suppose you wanted the state at the current moment, here it is
+
+**getState** -- to get the state at the current moment
 ```javascript
 getState(); //returns the state at the current moment, see following
 
@@ -62,7 +67,7 @@ setInterval(
   1000
 );
 ```
-subscribe - used to update the view when the state changes
+**subscribe** -- used to update the view when the state changes
 
 ```javascript
 //commmon example from create-react-app modified to use FlexFlux
