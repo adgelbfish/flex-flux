@@ -13,14 +13,17 @@ So FlexFlux tries to make it more flexible while still fixing the "good to unwan
 `npm install --save flex-flux` or `yarn add flex-flux`
 
 ##Get started
+
 make a file named something like `dataStore.js`
 with the following code:
+
 ```javascript
 import FlexFlux from 'flex-flux';
 export const { modifyState, getState, subscribe } = new FlexFlux();
 ```
 
 ##The api
+
 There are three exposed api entry points.
 
 1. `modifyState` - takes a function that should accept the state object, and do whatever it wants with it.
@@ -92,6 +95,7 @@ subscribe(renderApp);
 
 ##And what about async?
 ###promises, promises, promises
+
 Just return a promise instead of a synchronous function...
 FlexFlux will wait until the promise resolves before running the next modifier.
 
@@ -109,4 +113,19 @@ const promiseModifier = state => axios
 
 //pass it right in
 modifyState(promiseModifier);
+```
+
+##Advanced usage
+
+**addPrerun** if you want to add a function or promise that runs before every call, (sample use case - history keeper)
+
+```javascript
+import {getState, addPrerun} from './dataStore'
+const history = []
+
+const basicSaveHistory = () => {
+    history.push(JSON.stringify(getState()))
+}
+
+addPrerun(basicSaveHistory)
 ```
