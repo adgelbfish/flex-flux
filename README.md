@@ -58,6 +58,7 @@ modifyState(initialModifier); //this will leave the end result of state.foo to b
 
 
 **getState** -- to get the state at the current moment
+
 ```javascript
 getState(); //returns the state at the current moment, see following
 

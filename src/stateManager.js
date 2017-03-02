@@ -32,6 +32,7 @@ export const FlexFlux = function() {
   const subscribe = fn => {
     subscriptions.push(fn);
   };
+
   return {
     modifyState: modifier => {
       addToQueue(modifier);
