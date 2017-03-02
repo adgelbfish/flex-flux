@@ -60,9 +60,4 @@ typings/
 .env
 
 
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
-.idea/FlexFlux.iml
-.idea/jsLibraryMappings.xml
-.idea/watcherTasks.xml
+.idea
