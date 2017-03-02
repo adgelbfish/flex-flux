@@ -4,6 +4,7 @@ export const FlexFlux = function() {
   let queue = [];
   let isRunning = false;
   let subscriptions = [];
+  let preruns = [];
 
   const addToQueue = modifier => {
     queue.push(modifier);
@@ -14,6 +15,14 @@ export const FlexFlux = function() {
     isRunning = true;
     let exec = Promise.resolve();
     exec
+      .then(() => Promise.all(
+        preruns.map(prerun => {
+          if (typeof prerun === "function") {
+            prerun();
+          }
+          return prerun;
+        })
+      ))
       .then(() => {
         let fn = queue.shift();
         if (fn) return fn(state);
@@ -33,11 +42,16 @@ export const FlexFlux = function() {
     subscriptions.push(fn);
   };
 
+  const addPrerun = fn => {
+    preruns.push(fn);
+  };
+
   return {
     modifyState: modifier => {
       addToQueue(modifier);
     },
     getState: () => state,
-    subscribe: fn => subscribe(fn)
+    subscribe: subscribe,
+    addPrerun: addPrerun
   };
 };
