@@ -19,7 +19,10 @@ with the following code:
 
 ```javascript
 import FlexFlux from 'flex-flux';
-export const { modifyState, getState, subscribe } = new FlexFlux();
+
+const initialState = {}
+
+export const { modifyState, getState, subscribe } = new FlexFlux(initialState);
 ```
 
 ##The api
@@ -36,8 +39,6 @@ There are three exposed api entry points.
 
 ```javascript
 //replace with the relative location of your FlexFlux instance
-import { getState, modifyState } from "./dataStore";
-
 const initialModifier = state => {
   state.foo = "bar";
 };
@@ -117,7 +118,7 @@ modifyState(promiseModifier);
 
 ##Advanced usage
 
-**addPrerun** if you want to add a function or promise that runs before every call, (sample use case - history keeper)
+**addPrerun** if you want to add a function or promise that runs before every call, (sample use case: history keeper)
 
 ```javascript
 import {getState, addPrerun} from './dataStore'

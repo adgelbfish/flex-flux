@@ -19,14 +19,6 @@ let promiseChecker = fooState => new Promise((res, rej) => {
   modifyState(modifierFunction);
 });
 
-let propertyCheckerHelper = prop => new Promise((res, rej) => {
-  let modifierFunction = state => new Promise((subRes, subRej) => {
-    res(state[prop]);
-    subRes();
-  });
-  modifyState(modifierFunction);
-});
-
 describe("modifyState", () => {
   it("should modify the state according to modifier functions", async () => {
     let fooVar = await regularChecker("Hello");
@@ -73,11 +65,12 @@ describe("addPrerun", () => {
     await promiseChecker("hi");
     expect(mockFn).toHaveBeenCalled();
   });
+
   it("should wait at least 100ms on a promise passed to prerun", async () => {
     let mockFn = jest.fn(() => {});
     addPrerun(new Promise(resolve => setTimeout(() => resolve(mockFn()), 100)));
     await regularChecker("hi");
     await promiseChecker("hi");
-    expect(mockFn).toHaveBeenCalled;
+    expect(mockFn).toHaveBeenCalled();
   });
 });

@@ -1,5 +1,5 @@
-export const FlexFlux = function() {
-  const state = {};
+export const FlexFlux = function(initialState = {}) {
+  const state = initialState;
 
   let queue = [];
   let isRunning = false;
