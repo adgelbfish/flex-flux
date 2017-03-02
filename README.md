@@ -1,5 +1,5 @@
 #FlexFlux
-##A flexible flux
+##A more flexible flux
 Inspired by https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
 Read more here: https://medium.com/@adg_88110/why-i-wrote-a-flux-implementation-5f94a0f7a5c2#.9gt012xwv
