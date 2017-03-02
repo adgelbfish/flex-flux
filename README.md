@@ -64,7 +64,7 @@ setInterval(
 ```
 subscribe - used to update the view when the state changes
 
-```jsx harmony
+```javascript
 //commmon example from create-react-app modified to use FlexFlux
 import React from "react";
 import ReactDOM from "react-dom";
